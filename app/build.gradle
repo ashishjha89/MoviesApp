@@ -1,0 +1,79 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "moviesnow.com.moviesnow"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+ext {
+    supportLibVersion = '27.1.0'
+    archComponentVersion = "1.1.1"
+    espressoVersion = '3.0.2'
+    uiautomatorVersion = '18:2.1.2'
+    mockitoAndroidVersion = '2.8.47'
+    testRunnerVersion = '1.0.1'
+    powerMockVersion = '1.7.3'
+    mockitoVersion = '2.8.9'
+    hamcrestVersion = '1.3'
+    junitVersion = '4.12'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1'
+    implementation "com.android.support:design:${supportLibVersion}"
+
+    implementation "com.android.support:appcompat-v7:${supportLibVersion}"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation "com.android.support:recyclerview-v7:${supportLibVersion}"
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // Architecture Components
+    implementation "android.arch.lifecycle:runtime:${archComponentVersion}"
+    implementation "android.arch.lifecycle:extensions:${archComponentVersion}"
+    annotationProcessor "android.arch.lifecycle:compiler:${archComponentVersion}"
+    testImplementation "android.arch.core:core-testing:${archComponentVersion}"
+
+    // Networking
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-jackson:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
+
+    // Local unit testing
+    testImplementation "junit:junit:${junitVersion}"
+    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+    testImplementation "org.hamcrest:hamcrest-all:${hamcrestVersion}"
+    testImplementation "org.powermock:powermock-api-mockito2:${powerMockVersion}"
+    testImplementation "org.powermock:powermock-module-junit4-rule-agent:${powerMockVersion}"
+    testImplementation "org.powermock:powermock-module-junit4-rule:${powerMockVersion}"
+    testImplementation "org.powermock:powermock-module-junit4:${powerMockVersion}"
+
+    // Espresso testing
+    androidTestImplementation "com.android.support:support-annotations:${supportLibVersion}"
+    androidTestImplementation "com.android.support.test:runner:${testRunnerVersion}"
+    androidTestImplementation "com.android.support.test:rules:${testRunnerVersion}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:${espressoVersion}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:${espressoVersion}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:${espressoVersion}"
+    androidTestImplementation "com.android.support.test.uiautomator:uiautomator-v${uiautomatorVersion}"
+}
