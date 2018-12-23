@@ -19,22 +19,13 @@ import moviesnow.com.moviesnow.movieslist.adapter.MovieListAdapter
 
 class MovieListActivity : AppCompatActivity(), MovieListAdapter.MovieClickListener {
 
-    private val viewModel: MoviesViewModel by lazy {
-        val factory = MoviesViewModelFactory()
-        return@lazy ViewModelProviders.of(this, factory).get(MoviesViewModel::class.java)
-    }
+    private val viewModel: MoviesViewModel by lazy { ViewModelProviders.of(this, MoviesViewModelFactory()).get(MoviesViewModel::class.java) }
 
-    private val adapter: MovieListAdapter by lazy {
-        MovieListAdapter(movieClickListener = this, viewModel = viewModel)
-    }
+    private val adapter: MovieListAdapter by lazy { MovieListAdapter(movieClickListener = this, viewModel = viewModel) }
 
-    private val movieSearchHandler: MovieSearchHandler by lazy {
-        MovieSearchHandler(viewModel)
-    }
+    private val movieSearchHandler: MovieSearchHandler by lazy { MovieSearchHandler(viewModel) }
 
-    private val searchViewController: SearchViewController by lazy {
-        SearchViewController(movieSearchHandler, viewModel)
-    }
+    private val searchViewController: SearchViewController by lazy { SearchViewController(movieSearchHandler, viewModel) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

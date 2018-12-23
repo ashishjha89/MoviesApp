@@ -4,7 +4,7 @@ import android.os.Handler
 import android.os.Message
 import java.lang.ref.WeakReference
 
-class MovieSearchHandler(private val viewModel: MoviesViewModel) {
+class MovieSearchHandler(viewModel: MoviesViewModel) {
 
     companion object {
         private const val UPDATE_QUERY_INTERVAL = 200L

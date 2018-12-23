@@ -12,9 +12,7 @@ class MoviesRepo(private val moviesApi: MoviesApi, private val moviesCache: Movi
 
     fun getCurrentMovies(pageNumber: Int): LiveData<Resource<CurrentMovies>> {
         val moviesFromApi = moviesApi.getCurrentMovies(pageNumber)
-        return Transformations.map(moviesFromApi) {
-            getAggregatedMovies(moviesFromApi = it)
-        }
+        return Transformations.map(moviesFromApi) { getAggregatedMovies(moviesFromApi = it) }
     }
 
     fun getMovieSearchResult(pageNumber: Int, query: String): LiveData<Resource<CurrentMovies>> {
@@ -22,9 +20,7 @@ class MoviesRepo(private val moviesApi: MoviesApi, private val moviesCache: Movi
             moviesCache.cachedMovies = null
         }
         val moviesFromApi = moviesApi.getMovieSearchResult(pageNumber, query)
-        return Transformations.map(moviesFromApi) {
-            getAggregatedMovies(moviesFromApi = it)
-        }
+        return Transformations.map(moviesFromApi) { getAggregatedMovies(moviesFromApi = it) }
     }
 
     private fun getAggregatedMovies(moviesFromApi: Resource<CurrentMovies>): Resource<CurrentMovies> {
