@@ -4,9 +4,11 @@ import android.support.annotation.VisibleForTesting
 
 object ApiProvider {
 
-    var mockApi: MoviesApi? = null
+    private var mockApi: MoviesApi? = null
 
-    val moviesApi = MoviesApiImpl()
+    private val moviesApi = MoviesApiImpl()
+
+    fun getMoviesApi() : MoviesApi = mockApi?: moviesApi
 
     @VisibleForTesting
     fun initializeMockApi(api: MoviesApi) {

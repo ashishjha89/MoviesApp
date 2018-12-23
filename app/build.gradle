@@ -5,11 +5,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 27
     defaultConfig {
         applicationId "moviesnow.com.moviesnow"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -23,7 +23,7 @@ android {
 }
 
 ext {
-    supportLibVersion = '27.1.0'
+    supportLibVersion = '27.1.1'
     archComponentVersion = "1.1.1"
     espressoVersion = '3.0.2'
     uiautomatorVersion = '18:2.1.2'

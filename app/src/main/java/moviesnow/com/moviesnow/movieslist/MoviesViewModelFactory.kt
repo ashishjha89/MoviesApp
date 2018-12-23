@@ -8,6 +8,6 @@ class MoviesViewModelFactory : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>) = MoviesViewModel(
-        moviesRepo = MoviesRepo(moviesApi = ApiProvider.moviesApi, moviesCache = MoviesCache())
+        moviesRepo = MoviesRepo(moviesApi = ApiProvider.getMoviesApi(), moviesCache = MoviesCache())
     ) as T
 }
