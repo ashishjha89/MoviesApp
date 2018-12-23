@@ -27,7 +27,7 @@ class MoviesRepo(private val moviesApi: MoviesApi, private val moviesCache: Movi
         if (moviesFromApi.status == ResourceStatus.SUCCESS) {
             val aggregatedMovies = Resource.success(
                 data = getAllLoadedMovies(
-                    newMovies = moviesFromApi.data!!,
+                    newMovies = moviesFromApi.data?:return moviesFromApi,
                     oldMovies = moviesCache.cachedMovies
                 )
             )

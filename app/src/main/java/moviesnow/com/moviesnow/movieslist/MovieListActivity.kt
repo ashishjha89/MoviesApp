@@ -72,7 +72,7 @@ class MovieListActivity : AppCompatActivity(), MovieListAdapter.MovieClickListen
 
     private fun setErrorView() {
         Snackbar.make(moviesListView, R.string.somethingWentWrong, Snackbar.LENGTH_LONG).show()
-        if (adapter.movies == null || adapter.movies!!.results.isEmpty()) {
+        if (adapter.movies?.results?.isNotEmpty() == true) {
             initializeAdapter(columns = 1)
             adapter.notifyDataSetChanged()
         }
