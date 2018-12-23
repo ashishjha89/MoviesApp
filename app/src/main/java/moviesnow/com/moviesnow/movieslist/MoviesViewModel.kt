@@ -46,7 +46,7 @@ class MoviesViewModel(private val moviesRepo: MoviesRepo) : ViewModel() {
             movieRequest == null -> AbsentLiveData.create()
 
             movieRequest.isSearchRequest() ->
-                moviesRepo.getMovieSearchResult(movieRequest.pageNumber, movieRequest.query)
+                moviesRepo.getMovieSearchResult(pageNumber = movieRequest.pageNumber, query = movieRequest.query)
 
             else -> moviesRepo.getCurrentMovies(pageNumber = movieRequest.pageNumber)
         }

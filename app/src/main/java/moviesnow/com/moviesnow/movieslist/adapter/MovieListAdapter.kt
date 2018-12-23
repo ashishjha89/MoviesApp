@@ -1,6 +1,7 @@
 package moviesnow.com.moviesnow.movieslist.adapter
 
 import android.content.Context
+import android.net.ConnectivityManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +12,6 @@ import moviesnow.com.moviesnow.api.loadPosterImage
 import moviesnow.com.moviesnow.models.CurrentMovies
 import moviesnow.com.moviesnow.models.Movie
 import moviesnow.com.moviesnow.movieslist.MoviesViewModel
-import android.net.NetworkInfo
-import android.content.Context.CONNECTIVITY_SERVICE
-import android.net.ConnectivityManager
-
-
 
 class MovieListAdapter(
     private val movieClickListener: MovieClickListener,
@@ -40,19 +36,15 @@ class MovieListAdapter(
                 itemView = inflater.inflate(R.layout.movie_empty, parent, false)
             )
             else -> EmptyMoviesViewHolder(
-                inflater.inflate(
-                    R.layout.movie_empty,
-                    parent,
-                    false
-                )
+                itemView = inflater.inflate(R.layout.movie_empty, parent, false)
             )
         }
     }
 
     override fun getItemCount(): Int {
-        val movieList = movies?.results ?: return 1
+        val movieList = movies?.results ?: return 1 // EmptyView
         return when (movieList.isEmpty()) {
-            true -> 1
+            true -> 1 // EmptyView
             else -> movieList.size
         }
     }
@@ -93,7 +85,8 @@ class MovieListAdapter(
     private fun setEmptyMovieView(itemViewHolder: EmptyMoviesViewHolder) {
         with(itemViewHolder.emptyMoviesMessageView) {
             visibility = if (viewModel.movieList.value?.status == ResourceStatus.LOADING) View.GONE else View.VISIBLE
-            text = if (isNetworkAvailable(context)) context.getString(R.string.noResultFound) else context.getString(R.string.noInternetConnection)
+            text =
+                    if (isNetworkAvailable(context)) context.getString(R.string.noResultFound) else context.getString(R.string.noInternetConnection)
         }
     }
 
