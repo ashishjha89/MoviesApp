@@ -2,5 +2,6 @@
     <string name="appName">Movies</string>
     <string name="search">Search</string>
     <string name="noResultFound">No result Found</string>
+    <string name="noInternetConnection">No internet connection</string>
     <string name="somethingWentWrong">Oops! Something went wrong.</string>
 </resources>
