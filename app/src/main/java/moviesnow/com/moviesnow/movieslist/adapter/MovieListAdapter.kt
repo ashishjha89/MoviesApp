@@ -1,7 +1,5 @@
 package moviesnow.com.moviesnow.movieslist.adapter
 
-import android.content.Context
-import android.net.ConnectivityManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +7,7 @@ import android.view.ViewGroup
 import moviesnow.com.moviesnow.R
 import moviesnow.com.moviesnow.api.ResourceStatus
 import moviesnow.com.moviesnow.api.loadPosterImage
+import moviesnow.com.moviesnow.isNetworkAvailable
 import moviesnow.com.moviesnow.models.CurrentMovies
 import moviesnow.com.moviesnow.models.Movie
 import moviesnow.com.moviesnow.movieslist.MoviesViewModel
@@ -85,8 +84,7 @@ class MovieListAdapter(
     private fun setEmptyMovieView(itemViewHolder: EmptyMoviesViewHolder) {
         with(itemViewHolder.emptyMoviesMessageView) {
             visibility = if (viewModel.movieList.value?.status == ResourceStatus.LOADING) View.GONE else View.VISIBLE
-            text =
-                    if (isNetworkAvailable(context)) context.getString(R.string.noResultFound) else context.getString(R.string.noInternetConnection)
+            text = if (isNetworkAvailable(context)) context.getString(R.string.noResultFound) else context.getString(R.string.noInternetConnection)
         }
     }
 
@@ -100,11 +98,5 @@ class MovieListAdapter(
 
     interface MovieClickListener {
         fun onMovieClicked(movie: Movie)
-    }
-
-    private fun isNetworkAvailable(context: Context): Boolean {
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetworkInfo = connectivityManager.activeNetworkInfo
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
 }

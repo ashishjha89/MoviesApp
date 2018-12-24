@@ -65,9 +65,9 @@ class MovieListActivity : AppCompatActivity(), MovieListAdapter.MovieClickListen
     }
 
     private fun updateMovieList(movies: CurrentMovies) {
-        adapter.notifyDataSetChanged()
         updateLayoutManagerIfNeeded(oldMovies = adapter.movies, newMovies = movies)
         adapter.movies = movies
+        adapter.notifyDataSetChanged()
     }
 
     private fun setErrorView() {
@@ -82,10 +82,10 @@ class MovieListActivity : AppCompatActivity(), MovieListAdapter.MovieClickListen
 
     private fun updateLayoutManagerIfNeeded(oldMovies: CurrentMovies?, newMovies: CurrentMovies) {
         if (oldMovies?.results?.size == 0 && newMovies.results.isNotEmpty()) {
-            // If oldList was empty and newList has entries -> set column
+            // If oldList was empty and newList has entries -> set column based on screen width
             initializeAdapter(columns = getColumnCount())
         } else if (newMovies.results.isEmpty()) {
-            // If newList is empty
+            // If newList is empty, set column = 1
             initializeAdapter(columns = 1)
         }
     }

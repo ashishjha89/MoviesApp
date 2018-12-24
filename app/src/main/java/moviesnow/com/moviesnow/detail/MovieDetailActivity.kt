@@ -18,9 +18,7 @@ class MovieDetailActivity : AppCompatActivity() {
 
         @JvmStatic
         fun getLaunchIntent(context: Context, movie: Movie) =
-            Intent(context, MovieDetailActivity::class.java).apply {
-                putExtra(MOVIE, movie)
-            }
+            Intent(context, MovieDetailActivity::class.java).apply { putExtra(MOVIE, movie) }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,8 +31,8 @@ class MovieDetailActivity : AppCompatActivity() {
         val movie = intent.getSerializableExtra(MOVIE) as Movie
         movieTitleView.text = movie.title
         movieOverviewView.text = movie.overview
-        val isExtraWide = resources.configuration.screenWidthDp > 720
 
+        val isExtraWide = resources.configuration.screenWidthDp > 720
         loadBackdropImage(movie.backdropPath?:return, backdropImageView, isExtraWide)
     }
 

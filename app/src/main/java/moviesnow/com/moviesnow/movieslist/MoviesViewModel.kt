@@ -16,7 +16,6 @@ class MoviesViewModel(private val moviesRepo: MoviesRepo) : ViewModel() {
     }
 
     private val moviesRequest = MutableLiveData<LoadMovies>()
-
     val movieList: LiveData<Resource<CurrentMovies>> =
         Transformations.switchMap(moviesRequest) {
             getMovies(movieRequest = it)

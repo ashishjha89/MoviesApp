@@ -14,7 +14,7 @@
         <ImageView
                 android:id="@+id/backdropImageView"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="@dimen/backdropImageWidth"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
                 tools:src="@drawable/ic_launcher_background"/>
@@ -23,18 +23,19 @@
                 android:id="@+id/movieTitleView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="@dimen/textLarge"
                 tools:text="Movie title"
-                android:layout_margin="18dp"
+                android:layout_margin="@dimen/normalMargin"
                 android:textColor="@color/warmGrayDark"/>
 
         <TextView
                 android:id="@+id/movieOverviewView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="@dimen/textNormal"
                 tools:text="This is movies overview"
-                android:layout_margin="14dp"
+                android:layout_marginLeft="@dimen/normalMargin"
+                android:layout_marginRight="@dimen/normalMargin"
                 android:textColor="@color/warmGrayDark"/>
 
     </LinearLayout>

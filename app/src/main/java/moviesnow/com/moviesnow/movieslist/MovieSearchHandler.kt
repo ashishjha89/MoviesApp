@@ -14,9 +14,10 @@ class MovieSearchHandler(viewModel: MoviesViewModel) {
     private var handler = QueryHandler(viewModel)
 
     fun setQueryString(query: String) {
-        val msg = handler.obtainMessage()
-        msg.what = SEARCH
-        msg.obj = query.trim()
+        val msg = handler.obtainMessage().apply {
+            what = SEARCH
+            obj = query.trim()
+        }
         handler.removeMessages(SEARCH)
         handler.sendMessageDelayed(msg, UPDATE_QUERY_INTERVAL)
     }
